@@ -80,8 +80,8 @@
 			<div *ngIf="children.children?.length && children.style == 'grid'" class="banner-grid">
 				<ion-row>
 					<ion-col style="line-height: 0;" class="ion-activatable ion-focusable hydrated"
-						*ngFor="let image of children.children" size="{{children.child_width/8.33333333}}" size-sm="6" size-md="4"
-						size-lg="4" [style.padding]="children.margin_between">
+						*ngFor="let image of children.children" size="{{children.child_width/8.33333333}}" size-sm="6"
+						size-md="4" size-lg="4" [style.padding]="children.margin_between">
 						<ion-card mode="{{settings.settings.mode}}" (click)="goto(image)" button="true">
 							<img src="{{image.image}}" [style.border-radius]="children.border_radius">
 						</ion-card>
@@ -98,7 +98,8 @@
 			<!-- Products Scroll -->
 			<div *ngIf="children.products && children.style == 'scroll'" class="product-scroll">
 				<div class="scroller" [ngClass]="{'floating-header': children.header_align == 'left_floating'}">
-					<div class="product-item" *ngFor="let item of children.products" [style.width.%]="children.child_width">
+					<div class="product-item" *ngFor="let item of children.products"
+						[style.width.%]="children.child_width">
 						<ion-card mode="{{settings.settings.mode}}" button="true"
 							class="ion-activatable ion-focusable hydrated {{children.banner_shadow}}"
 							[style.border-radius]="children.border_radius" (click)="getProduct(item)">
@@ -106,16 +107,18 @@
 								src="{{item.images[0].src}}">
 							<img class="ion-activatable ion-focusable hydrated" *ngIf="!item.images?.length"
 								src="assets/image/logo.png">
-							<ion-icon name="heart-outline" mode="md" class="wishlist-button-grid" *ngIf="!settings.wishlist[item.id]"
+							<ion-icon name="heart-outline" mode="md" class="wishlist-button-grid"
+								*ngIf="!settings.wishlist[item.id]"
 								(click)="settings.addToWishlist(item.id); $event.stopPropagation()"></ion-icon>
-							<ion-icon name="heart" color="{{settings.theme.button}}" mode="md" class="wishlist-button-grid"
-								*ngIf="settings.wishlist[item.id]"
+							<ion-icon name="heart" color="{{settings.theme.button}}" mode="md"
+								class="wishlist-button-grid" *ngIf="settings.wishlist[item.id]"
 								(click)="settings.removeFromWishlist(item.id); $event.stopPropagation()"></ion-icon>
 
 							<ion-button color="danger" class="stock" *ngIf="item.stock_status == 'outofstock'">{{"No
 								Stock" | translate}}</ion-button>
 							<div *ngIf="item.stock_status == 'instock'">
-								<ion-button class="offer" *ngIf="((item.regular_price - item.price) /item.regular_price*100) >= 1">
+								<ion-button class="offer"
+									*ngIf="((item.regular_price - item.price) /item.regular_price*100) >= 1">
 									{{(item.regular_price - item.price) /item.regular_price*100 | number : '1.0-0'}}%
 								</ion-button>
 							</div>
@@ -125,9 +128,11 @@
 							</ion-card-header>
 							<ion-card-content>
 								<p class="price">
-									<span class="regular-price" *ngIf="!item.sale_price" [innerHTML]="item.formated_price"></span>
+									<span class="regular-price" *ngIf="!item.sale_price"
+										[innerHTML]="item.formated_price"></span>
 									<span class="regular-price" *ngIf="item.sale_price"><span
-											[innerHTML]="item.formated_sales_price"></span><span class="special-price"><del
+											[innerHTML]="item.formated_sales_price"></span><span
+											class="special-price"><del
 												[innerHTML]="item.formated_price"></del></span></span>
 								</p>
 							</ion-card-content>
@@ -138,23 +143,26 @@
 			<!-- Products  Grid-->
 			<div class="product-grid" *ngIf="children.products?.length && children.style == 'grid'">
 				<ion-row class="row unlimited-items">
-					<ion-col class="col" *ngFor="let item of children.products" [style.padding]="children.margin_between">
+					<ion-col class="col" *ngFor="let item of children.products"
+						[style.padding]="children.margin_between">
 						<ion-card mode="{{settings.settings.mode}}" button="true"
 							class="ion-activatable ion-focusable hydrated {{children.banner_shadow}}"
 							[style.border-radius]="children.border_radius" (click)="getProduct(item)">
-							<ion-img alt="" [style.height.px]="settings.dimensions.homeGridViewHeight" *ngIf="item.images?.length"
-								[src]="item.images[0].src"></ion-img>
-							<ion-img alt="" [style.height.px]="settings.dimensions.homeGridViewHeight" *ngIf="!item.images?.length"
-								src="assets/image/logo.png"></ion-img>
-							<ion-icon name="heart-outline" mode="md" class="wishlist-button-grid" *ngIf="!settings.wishlist[item.id]"
+							<ion-img alt="" [style.height.px]="settings.dimensions.homeGridViewHeight"
+								*ngIf="item.images?.length" [src]="item.images[0].src"></ion-img>
+							<ion-img alt="" [style.height.px]="settings.dimensions.homeGridViewHeight"
+								*ngIf="!item.images?.length" src="assets/image/logo.png"></ion-img>
+							<ion-icon name="heart-outline" mode="md" class="wishlist-button-grid"
+								*ngIf="!settings.wishlist[item.id]"
 								(click)="settings.addToWishlist(item.id); $event.stopPropagation()"></ion-icon>
-							<ion-icon name="heart" color="{{settings.theme.button}}" mode="md" class="wishlist-button-grid"
-								*ngIf="settings.wishlist[item.id]"
+							<ion-icon name="heart" color="{{settings.theme.button}}" mode="md"
+								class="wishlist-button-grid" *ngIf="settings.wishlist[item.id]"
 								(click)="settings.removeFromWishlist(item.id); $event.stopPropagation()"></ion-icon>
 							<ion-button color="danger" class="stock" *ngIf="item.stock_status == 'outofstock'">{{"No
 								Stock" | translate}}</ion-button>
 							<div *ngIf="item.stock_status == 'instock'">
-								<ion-button class="offer" *ngIf="((item.regular_price - item.price) /item.regular_price*100) >= 1">
+								<ion-button class="offer"
+									*ngIf="((item.regular_price - item.price) /item.regular_price*100) >= 1">
 									{{(item.regular_price - item.price) /item.regular_price*100 | number : '1.0-0'}}%
 								</ion-button>
 							</div>
@@ -163,9 +171,11 @@
 							</ion-card-header>
 							<ion-card-content>
 								<p class="price">
-									<span class="regular-price" *ngIf="!item.sale_price" [innerHTML]="item.formated_price"></span>
+									<span class="regular-price" *ngIf="!item.sale_price"
+										[innerHTML]="item.formated_price"></span>
 									<span class="regular-price" *ngIf="item.sale_price"><span
-											[innerHTML]="item.formated_sales_price"></span><span class="special-price"><del
+											[innerHTML]="item.formated_sales_price"></span><span
+											class="special-price"><del
 												[innerHTML]="item.formated_price"></del></span></span>
 								</p>
 							</ion-card-content>
@@ -197,8 +207,8 @@
 			<!-- Products Scroll -->
 			<div *ngIf="children.products && children.style == 'scroll'" class="product-scroll">
 				<div class="scroller" [ngClass]="{'floating-header': children.header_align == 'left_floating'}">
-					<div class="product-item" *ngFor="let item of children.products" [style.width.%]="children.child_width"
-						[style.padding]="children.margin_between">
+					<div class="product-item" *ngFor="let item of children.products"
+						[style.width.%]="children.child_width" [style.padding]="children.margin_between">
 						<ion-card mode="{{settings.settings.mode}}" button="true"
 							class="ion-activatable ion-focusable hydrated {{children.banner_shadow}}"
 							[style.border-radius]="children.border_radius" (click)="getProduct(item)">
@@ -210,13 +220,14 @@
 								<ion-icon name="heart-outline" mode="md" class="wishlist-button-grid"
 									*ngIf="!settings.wishlist[item.id]"
 									(click)="settings.addToWishlist(item.id); $event.stopPropagation()"></ion-icon>
-								<ion-icon name="heart" color="{{settings.theme.button}}" mode="md" class="wishlist-button-grid"
-									*ngIf="settings.wishlist[item.id]"
+								<ion-icon name="heart" color="{{settings.theme.button}}" mode="md"
+									class="wishlist-button-grid" *ngIf="settings.wishlist[item.id]"
 									(click)="settings.removeFromWishlist(item.id); $event.stopPropagation()"></ion-icon>
 								<ion-button color="danger" class="stock" *ngIf="item.stock_status == 'outofstock'">No
 									Stock</ion-button>
 								<div *ngIf="item.stock_status == 'instock'">
-									<ion-button class="offer" *ngIf="((item.regular_price - item.price) /item.regular_price*100) >= 1">
+									<ion-button class="offer"
+										*ngIf="((item.regular_price - item.price) /item.regular_price*100) >= 1">
 										{{(item.regular_price - item.price) /item.regular_price*100 | number :
 										'1.0-0'}}%</ion-button>
 								</div>
@@ -226,9 +237,11 @@
 							</ion-card-header>
 							<ion-card-content>
 								<p class="price">
-									<span class="regular-price" *ngIf="!item.sale_price" [innerHTML]="item.formated_price"></span>
+									<span class="regular-price" *ngIf="!item.sale_price"
+										[innerHTML]="item.formated_price"></span>
 									<span class="regular-price" *ngIf="item.sale_price"><span
-											[innerHTML]="item.formated_sales_price"></span><span class="special-price"><del
+											[innerHTML]="item.formated_sales_price"></span><span
+											class="special-price"><del
 												[innerHTML]="item.formated_price"></del></span></span>
 								</p>
 							</ion-card-content>
@@ -239,23 +252,26 @@
 			<!-- Products  Grid-->
 			<div class="product-grid" *ngIf="children.products?.length && children.style == 'grid'">
 				<ion-row class="row unlimited-items">
-					<ion-col class="col" *ngFor="let item of children.products" [style.padding]="children.margin_between">
+					<ion-col class="col" *ngFor="let item of children.products"
+						[style.padding]="children.margin_between">
 						<ion-card mode="{{settings.settings.mode}}" button="true"
 							class="ion-activatable ion-focusable hydrated {{children.banner_shadow}}"
 							[style.border-radius]="children.border_radius" (click)="getProduct(item)">
-							<ion-img alt="" [style.height.px]="settings.dimensions.homeGridViewHeight" *ngIf="item.images?.length"
-								[src]="item.images[0].src"></ion-img>
-							<ion-img alt="" [style.height.px]="settings.dimensions.homeGridViewHeight" *ngIf="!item.images?.length"
-								src="assets/image/logo.png"></ion-img>
-							<ion-icon name="heart-outline" mode="md" class="wishlist-button-grid" *ngIf="!settings.wishlist[item.id]"
+							<ion-img alt="" [style.height.px]="settings.dimensions.homeGridViewHeight"
+								*ngIf="item.images?.length" [src]="item.images[0].src"></ion-img>
+							<ion-img alt="" [style.height.px]="settings.dimensions.homeGridViewHeight"
+								*ngIf="!item.images?.length" src="assets/image/logo.png"></ion-img>
+							<ion-icon name="heart-outline" mode="md" class="wishlist-button-grid"
+								*ngIf="!settings.wishlist[item.id]"
 								(click)="settings.addToWishlist(item.id); $event.stopPropagation()"></ion-icon>
-							<ion-icon name="heart" color="{{settings.theme.button}}" mode="md" class="wishlist-button-grid"
-								*ngIf="settings.wishlist[item.id]"
+							<ion-icon name="heart" color="{{settings.theme.button}}" mode="md"
+								class="wishlist-button-grid" *ngIf="settings.wishlist[item.id]"
 								(click)="settings.removeFromWishlist(item.id); $event.stopPropagation()"></ion-icon>
 							<ion-button color="danger" class="stock" *ngIf="item.stock_status == 'outofstock'">{{"No
 								Stock" | translate}}</ion-button>
 							<div *ngIf="item.stock_status == 'instock'">
-								<ion-button class="offer" *ngIf="((item.regular_price - item.price) /item.regular_price*100) >= 1">
+								<ion-button class="offer"
+									*ngIf="((item.regular_price - item.price) /item.regular_price*100) >= 1">
 									{{(item.regular_price - item.price) /item.regular_price*100 | number : '1.0-0'}}%
 								</ion-button>
 							</div>
@@ -264,9 +280,11 @@
 							</ion-card-header>
 							<ion-card-content>
 								<p class="price">
-									<span class="regular-price" *ngIf="!item.sale_price" [innerHTML]="item.formated_price"></span>
+									<span class="regular-price" *ngIf="!item.sale_price"
+										[innerHTML]="item.formated_price"></span>
 									<span class="regular-price" *ngIf="item.sale_price"><span
-											[innerHTML]="item.formated_sales_price"></span><span class="special-price"><del
+											[innerHTML]="item.formated_sales_price"></span><span
+											class="special-price"><del
 												[innerHTML]="item.formated_price"></del></span></span>
 								</p>
 							</ion-card-content>
@@ -345,7 +363,8 @@
 			</div>
 			<div *ngIf="data.categories && children.style == 'grid'" class="category-slider-grid">
 				<ion-row class="row unlimited-items">
-					<div [style.width.%]="children.child_width" [style.padding]="0" [style.padding]="children.margin_between"
+					<div [style.width.%]="children.child_width" [style.padding]="0"
+						[style.padding]="children.margin_between"
 						*ngFor="let item of getSubCategories(children.link_id)"
 						[class.donothide]="!(item.id==86 || item.id==28 || item.id==85 || item.id==1132)">
 						<ion-col *ngIf="(item.id==86 || item.id==28 || item.id==85 || item.id==1132)">
@@ -382,9 +401,10 @@
 					<ion-card-content>
 						<ion-img alt="" *ngIf="item.images?.length" [src]="item.images[0].src"
 							[style.height.px]="settings.dimensions.homeSliderHeight"></ion-img>
-						<ion-img alt="" [style.height.px]="settings.dimensions.homeSliderHeight" *ngIf="!item.images?.length"
-							src="assets/image/logo.png"></ion-img>
-						<ion-icon name="heart-outline" mode="md" class="wishlist-button-grid" *ngIf="!settings.wishlist[item.id]"
+						<ion-img alt="" [style.height.px]="settings.dimensions.homeSliderHeight"
+							*ngIf="!item.images?.length" src="assets/image/logo.png"></ion-img>
+						<ion-icon name="heart-outline" mode="md" class="wishlist-button-grid"
+							*ngIf="!settings.wishlist[item.id]"
 							(click)="settings.addToWishlist(item.id); $event.stopPropagation()"></ion-icon>
 						<ion-icon name="heart" color="{{settings.theme.button}}" mode="md" class="wishlist-button-grid"
 							*ngIf="settings.wishlist[item.id]"
@@ -392,7 +412,8 @@
 						<ion-button color="danger" class="stock" *ngIf="item.stock_status == 'outofstock'">{{"No Stock"
 							| translate}}</ion-button>
 						<div *ngIf="item.stock_status == 'instock'">
-							<ion-button class="offer" *ngIf="((item.regular_price - item.price) /item.regular_price*100) >= 1">
+							<ion-button class="offer"
+								*ngIf="((item.regular_price - item.price) /item.regular_price*100) >= 1">
 								{{(item.regular_price - item.price) /item.regular_price*100 | number : '1.0-0'}}%
 							</ion-button>
 						</div>
@@ -402,7 +423,8 @@
 					</ion-card-header>
 					<ion-card-content>
 						<p class="price">
-							<span class="regular-price" *ngIf="!item.sale_price" [innerHTML]="item.formated_price"></span>
+							<span class="regular-price" *ngIf="!item.sale_price"
+								[innerHTML]="item.formated_price"></span>
 							<span class="regular-price" *ngIf="item.sale_price"><span
 									[innerHTML]="item.formated_sales_price"></span><span class="special-price"><del
 										[innerHTML]="item.formated_price"></del></span></span>
@@ -428,9 +450,10 @@
 					<ion-card-content>
 						<ion-img alt="" *ngIf="item.images?.length" [src]="item.images[0].src"
 							[style.height.px]="settings.dimensions.homeSliderHeight"></ion-img>
-						<ion-img alt="" [style.height.px]="settings.dimensions.homeSliderHeight" *ngIf="!item.images?.length"
-							src="assets/image/logo.png"></ion-img>
-						<ion-icon name="heart-outline" mode="md" class="wishlist-button-grid" *ngIf="!settings.wishlist[item.id]"
+						<ion-img alt="" [style.height.px]="settings.dimensions.homeSliderHeight"
+							*ngIf="!item.images?.length" src="assets/image/logo.png"></ion-img>
+						<ion-icon name="heart-outline" mode="md" class="wishlist-button-grid"
+							*ngIf="!settings.wishlist[item.id]"
 							(click)="settings.addToWishlist(item.id); $event.stopPropagation()"></ion-icon>
 						<ion-icon name="heart" color="{{settings.theme.button}}" mode="md" class="wishlist-button-grid"
 							*ngIf="settings.wishlist[item.id]"
@@ -438,7 +461,8 @@
 						<ion-button color="danger" class="stock" *ngIf="item.stock_status == 'outofstock'">{{"No Stock"
 							| translate}}</ion-button>
 						<div *ngIf="item.stock_status == 'instock'">
-							<ion-button class="offer" *ngIf="((item.regular_price - item.price) /item.regular_price*100) >= 1">
+							<ion-button class="offer"
+								*ngIf="((item.regular_price - item.price) /item.regular_price*100) >= 1">
 								{{(item.regular_price - item.price) /item.regular_price*100 | number : '1.0-0'}}%
 							</ion-button>
 						</div>
@@ -448,7 +472,8 @@
 					</ion-card-header>
 					<ion-card-content>
 						<p class="price">
-							<span class="regular-price" *ngIf="!item.sale_price" [innerHTML]="item.formated_price"></span>
+							<span class="regular-price" *ngIf="!item.sale_price"
+								[innerHTML]="item.formated_price"></span>
 							<span class="regular-price" *ngIf="item.sale_price"><span
 									[innerHTML]="item.formated_sales_price"></span><span class="special-price"><del
 										[innerHTML]="item.formated_price"></del></span></span>
